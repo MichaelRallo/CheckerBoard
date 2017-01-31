@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Mike
+ * @author Mike msr5zb 12358133
  */
 public class Msr5zbCheckers extends Application {
     

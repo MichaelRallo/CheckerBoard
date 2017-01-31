@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Mike
+ * @author Mike msr5zb 12358133
  */
 public class CheckersController implements Initializable {
 
@@ -48,62 +48,54 @@ public class CheckersController implements Initializable {
     public void ready(Stage stage) {
         //Resize Change Listener.
         ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
-            this.checkerBoard.setBoardWidth(this.board.getWidth());          
-            this.checkerBoard.setBoardHeight(this.board.getHeight());
+            checkerBoard.setBoardWidth(board.getWidth());          
+            checkerBoard.setBoardHeight(board.getHeight());
             updateDisplay();
         };
         
         //Initial CheckerBoard Init and Setup
-        this.board.widthProperty().addListener(lambdaChangeListener);
-        this.board.heightProperty().addListener(lambdaChangeListener);
-        checkerBoard = new CheckerBoard(this.ROWS, this.COLS, this.board.getWidth(), this.board.getHeight());
+        board.widthProperty().addListener(lambdaChangeListener);
+        board.heightProperty().addListener(lambdaChangeListener);
+        checkerBoard = new CheckerBoard(ROWS, COLS, board.getWidth(), board.getHeight());
         updateDisplay();
     }
     
+    //Update Board Display
     protected void updateDisplay(){
-        //Update Board Display
         this.board.getChildren().clear();
         this.board.getChildren().addAll(checkerBoard.build().getChildren());
     }
-
-    @FXML
-    private void setGrid16x16(ActionEvent event){
-        checkerBoard.setNumRows(16);
-        checkerBoard.setNumCols(16);
+    
+    //Update Grid Size
+    protected void updateGridSize(int rows, int cols){
+        checkerBoard.setNumRows(rows);
+        checkerBoard.setNumCols(cols);
         updateDisplay();
     }
+    
+    //Update Color Scheme
+    protected void updateColor(Color lightColor, Color darkcolor){
+        checkerBoard.setColor(lightColor, darkcolor);
+        updateDisplay();
+    }    
 
     @FXML
-    private void setGrid10x10(ActionEvent event){
-        checkerBoard.setNumRows(10);
-        checkerBoard.setNumCols(10);
-        updateDisplay();
-    }
+    private void setGrid16x16(ActionEvent event){updateGridSize(16, 16);}
 
     @FXML
-    private void setGrid8x8(ActionEvent event){
-        checkerBoard.setNumRows(8);
-        checkerBoard.setNumCols(8);
-        updateDisplay();
-    }
+    private void setGrid10x10(ActionEvent event){updateGridSize(10, 10);}
+    
+    @FXML
+    private void setGrid8x8(ActionEvent event){updateGridSize(8, 8);}
 
     @FXML
-    private void setGrid3x3(ActionEvent event){
-        checkerBoard.setNumRows(3);
-        checkerBoard.setNumCols(3);
-        updateDisplay();
-    }
+    private void setGrid3x3(ActionEvent event){updateGridSize(3, 3);}
 
     @FXML
-    private void setColorDefault(ActionEvent event){
-        checkerBoard.setColor(Color.RED, Color.BLACK);
-        updateDisplay();
-    }
-
+    private void setColorDefault(ActionEvent event){updateColor(Color.RED, Color.BLACK);}
+    
     @FXML
-    private void setColorBlue(ActionEvent event){
-        checkerBoard.setColor(Color.SKYBLUE, Color.DARKBLUE);
-        updateDisplay();
-    }
+    private void setColorBlue(ActionEvent event){updateColor(Color.SKYBLUE, Color.DARKBLUE);}
+
 
 }

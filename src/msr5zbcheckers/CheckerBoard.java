@@ -44,9 +44,10 @@ public class CheckerBoard {
     public void setNumCols(int cols){this.numCols = cols;} 
     public void setColor(Color lightColor, Color darkColor){this.lightColor = lightColor; this.darkColor = darkColor;} 
     
+    //Update Rectangle Sizes
     private void updateRectangleSize(){
-        this.rectangleWidth = (boardWidth / numRows);
-        this.rectangleHeight = (boardHeight / numCols);
+        rectangleWidth = (boardWidth / numRows);
+        rectangleHeight = (boardHeight / numCols);
     }
     
     //Default Constructor
@@ -71,25 +72,25 @@ public class CheckerBoard {
         
         double translateX;   
         double translateY = 0;
-        this.board = new AnchorPane();
+        board = new AnchorPane();
         updateRectangleSize();
         
-        for (int row = 0; row < this.numRows; row++){
+        for (int row = 0; row < numRows; row++){
             translateX = 0;
-            for (int col = 0; col < this.numCols; col++){
-                Rectangle rect = new Rectangle(this.rectangleWidth, this.rectangleHeight);
+            for (int col = 0; col < numCols; col++){
+                Rectangle rect = new Rectangle(rectangleWidth, rectangleHeight);
                 rect.setTranslateX(translateX);
                 rect.setTranslateY(translateY);
                 if((row%2 == 0 && col%2 == 0) || (row%2 == 1 && col%2 == 1)){
-                    rect.setFill(this.lightColor);
+                    rect.setFill(lightColor);
                     board.getChildren().add(rect);
                 }else{
-                    rect.setFill(this.darkColor);
+                    rect.setFill(darkColor);
                     board.getChildren().add(rect);
                 }
-                translateX = translateX + this.rectangleWidth;
+                translateX = translateX + rectangleWidth;
             }
-            translateY = translateY + this.rectangleHeight;
+            translateY = translateY + rectangleHeight;
         }
         
         return this.board;
