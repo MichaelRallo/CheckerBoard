@@ -12,7 +12,13 @@ if(this.getCheckerColor() == player.getColor()){
             if(this.getSquare().isOpen(board, this, this.getSquare().getUpRightIndex())){legalMoves.add(this.getSquare().getUpRightIndex());}
             
             //Check Jump
-            
+            do(this.canJumpForward()){
+                //Check Left
+                if(canForwardJump()){}
+                //Check Right
+                
+                
+            }while(this.canJumpForward())
 
         } //Else it's Top Player
         else{ //Down is Forward
@@ -45,7 +51,12 @@ public int getUpLeftIndex(){index - rowLength - 1}
 public int getUpRightIndex(){index - rowLength + 1}
 public int getDownLeftIndex(){index + rowLength - 1}
 public int getDownRightIndex(){index + rowLength + 1}
-
+    
+public int getUpLeftJumpIndex(){index - (2*rowLength - 2}
+public int getUpRightJumpIndex(){index - (2*rowLength + 2}
+public int getDownLeftJumpIndex(){index + (2*rowLength - 2}
+public int getDownRightJumpIndex(){index + (2*rowLength + 2}
+                                            
 public boolean isOpen(Board board, Checker checker, int workingIndex){
     if(workingIndex >= 0 && workingIndex < (board.getRows()*board.getCols()-1)
        board[workingIndex].getSquareColor == darkColor &&
@@ -65,10 +76,10 @@ public boolean isEnemy(Board board, Checker checker, int workingIndex){
 
 
 
+forwardJump
 
 
-
-public List int checkJumps(Board board, Checker checker){
+public List int checkJumps(Board board, Checker checker, int enemyIndex, int landingIndex){
     if(this.isEnemny)
 
     
