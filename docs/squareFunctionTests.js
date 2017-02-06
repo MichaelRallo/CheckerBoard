@@ -1,4 +1,7 @@
 When a Checker is Clicked…
+
+list<int> legalMoves;
+list<int> jumpMoves;
 if(this.getCheckerColor() == player.getColor()){
     if(this.getCheckerType == NORMAL){ //Check Forward Moves
     
@@ -11,11 +14,10 @@ if(this.getCheckerColor() == player.getColor()){
             //Check Up Right - Normal Move
             if(this.getSquare().isOpen(board, this, this.getSquare().getUpRightIndex())){legalMoves.add(this.getSquare().getUpRightIndex());}
             
-            //Check Jump
-            do(this.canJumpForward()){
-                //Check Left
-                if(canForwardJump()){}
-                //Check Right
+  
+            //Check Jump Up Left
+            if(canForwardJump()){}
+            //Check Jump Up Right
                 
                 
             }while(this.canJumpForward())
@@ -27,6 +29,11 @@ if(this.getCheckerColor() == player.getColor()){
 
             //Check Down Right
             if(this.getSquare().isOpen(board, this, this.getSquare().getDownRightIndex())){legalMoves.add(this.getSquare().getDownRightIndex());}
+            
+            //Check Jump Down Left
+            
+            //Check Jump Down Right
+            
         }
     } //Else it's King Checker 
     else{ //Check All Cases
@@ -41,9 +48,16 @@ if(this.getCheckerColor() == player.getColor()){
 
         //Check Down Right
         if(this.getSquare().isOpen(board, this, this.getSquare().getDownRightIndex())){legalMoves.add(this.getSquare().getDownRightIndex());}
+
+        //Check Jump Up Left
+        //Check Jump Up Right
+        //Check Jump Down Left
+        //Check Jump Down Right
+        
     }
 }
 
+When user chooses a square the exists in legalMoves, continue. If square index is also in jumpMoves, Calculate jumps moves again to see if can multijump.
 
 int index;
 
