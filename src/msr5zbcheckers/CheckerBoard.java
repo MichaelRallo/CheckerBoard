@@ -5,6 +5,8 @@
  */
 package msr5zbcheckers;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -81,13 +83,18 @@ public class CheckerBoard {
                 Rectangle rect = new Rectangle(rectangleWidth, rectangleHeight);
                 rect.setTranslateX(translateX);
                 rect.setTranslateY(translateY);
-                if((row%2 == 0 && col%2 == 0) || (row%2 == 1 && col%2 == 1)){
-                    rect.setFill(lightColor);
-                    board.getChildren().add(rect);
-                }else{
-                    rect.setFill(darkColor);
-                    board.getChildren().add(rect);
-                }
+                rect.setOnMouseClicked((MouseEvent t) -> {
+                    System.out.println(
+                            "Index: "  
+                            + (rect.getTranslateX()/this.boardWidth*this.numRows + rect.getTranslateY()/this.boardHeight*this.numCols*this.numRows) 
+                            + " | Coords: " 
+                            + rect.getTranslateX()/this.boardWidth*this.numRows + ", " + rect.getTranslateY()/this.boardHeight*this.numCols);
+                });
+                
+                if((row%2 == 0 && col%2 == 0) || (row%2 == 1 && col%2 == 1)){rect.setFill(lightColor);}
+                else{rect.setFill(darkColor);}
+                
+                board.getChildren().add(rect);
                 translateX = translateX + rectangleWidth;
             }
             translateY = translateY + rectangleHeight;
